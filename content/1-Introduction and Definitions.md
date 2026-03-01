@@ -9,7 +9,9 @@ $\mathcal{M}$ - Message Space
 
 # Encryption Algorithm
 A method to Encrypt plaintext using a [[#Key]] which maintains privacy against adversaries. 
+
 `ENC`-Encrypts
+
 `DEC`-Decrypts
 
 # Key
