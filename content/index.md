@@ -3,4 +3,6 @@ title: Welcome to Quartz
 ---
 [[0-Resource List]]
 [[1-Cryptography]]
+[[2-Private Key Encryption]]
+[[3-Modern Cryptography]]
 
