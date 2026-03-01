@@ -30,3 +30,8 @@ Plaintext + Key ---Encryption Algorithm---> Ciphertext
 	- Knows the ciphertext
 	- Wishes to establish malicious connection with either Alice or Bob
 
+# The  Crypto Cycle
+cryptography historically progressed according to the following “crypto-cycle”_
+
+![[Pasted image 20260301155957.png|296]]
+Thus we felt a need to convert the art of cryptography to the science of cryptography, which is when we started to strive for "Provable Security". This can be considered the transition point to "[[3-Modern Cryptography]]"
