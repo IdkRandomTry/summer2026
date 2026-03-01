@@ -1,9 +1,10 @@
+Prereq: [[1-Introduction and Definitions]]
 # Idea
 We assume that only Key is private. 
-`GEN`, `ENC`, `DEC` is public i.e. known to [[1.0-Introduction and Definitions#Adversaries|adversaries]].
+`GEN`, `ENC`, `DEC` is public i.e. known to [[1-Introduction and Definitions#Adversaries|adversaries]].
 
 # Formally
-refer [[1.0-Introduction and Definitions|definitions]] wherever needed
+refer [[1-Introduction and Definitions|definitions]] wherever needed
 
 $(\mathcal{M}, \mathcal{K}, GEN, ENC, DEC)$ is a private-key encryption scheme if
 1) `GEN` is a randomized algorithm that returns a key k such that $k \in \mathcal{K}$. 
