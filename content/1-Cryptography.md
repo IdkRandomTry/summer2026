@@ -33,5 +33,5 @@ Plaintext + Key ---Encryption Algorithm---> Ciphertext
 # The  Crypto Cycle
 cryptography historically progressed according to the following “crypto-cycle”_
 
-![[../Attachments/Pasted image 20260301155957.png|416]]
+![[../Attachments/Pastedimage20260301155957.png|416]]
 Thus we felt a need to convert the art of cryptography to the science of cryptography, which is when we started to strive for "Provable Security". This can be considered the transition point to "[[3-Modern Cryptography]]"
