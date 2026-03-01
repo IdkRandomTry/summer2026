@@ -13,9 +13,9 @@ We also expand from communication to joint computations and more
 
 Explanation through example: Matchmaking Game
 
-![[../Attachments/Pastedimage20260301221213.png]]
+![[/Attachments/Pastedimage20260301221213.png]]
 
-![[../Attachments/Pastedimage20260301221146.png]]
+![[/Attachments/Pastedimage20260301221146.png]]
 
 This is then followed both parties making a random cut. Note that a party may choose to disobey and do an intentional cut or no cut at all.
 
