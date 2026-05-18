@@ -17,3 +17,6 @@ $(\mathcal{M}, \mathcal{K}, GEN, ENC, DEC)$ is a private-key encryption scheme i
 ### List
 [[2.1-Ceaser Cipher]]
 [[2.2-Substitution Cipher]]
+
+> PREVIOUS: [[1-Cryptography]]
+> NEXT: [[3-Modern Cryptography]]

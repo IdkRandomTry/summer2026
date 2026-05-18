@@ -36,3 +36,8 @@ cryptography historically progressed according to the following â€œcrypto-cycleâ
 ![[Pastedimage20260301155957.png]]
 
 Thus we felt a need to convert the art of cryptography to the science of cryptography, which is when we started to strive for "Provable Security". This can be considered the transition point to "[[3-Modern Cryptography]]"
+
+
+> PREVIOUS: [[0-Resource List]]
+> NEXT: [[2-Private Key Encryption]]
+

@@ -23,3 +23,36 @@ Final Output will be like:
 ![[Pastedimage20260301221727.png]]
 
 And "cuts" basically do cyclic shifts, hence even with parties disobeying, no party can know the choice of the other party.
+
+# Secrecy
+To Formalize secrecy, we define:
+1) [[3.1-Shannon's Secrecy]]
+2) [[3.2-Perfect Secrecy]]
+
+## Shannon's Secrecy $\Leftrightarrow$ Perfectly Secret
+Perfect security is syntactically simpler than Shannon security, and thus easier to work with. Fortunately,  Shannon Secrecy and Perfect Secrecy are equivalent notions !
+###### Theorem: A private-key encryption scheme is perfectly secret if and only if it is Shannon secret.
+Proof. \[Done in Notebook, page 1]
+
+An example of Perfect Secrecy is [[3.3-One Time Pad]]
+## Key Size for Shannon's Secret
+###### Theorem: If scheme (M, K, Gen, Enc, Dec) is a perfectly secret private-key encryption scheme, then |K| ≥ |M|
+Proof. \[Notebook page 2]
+
+> [!note] Explicit attack for |K| < |M|: 
+> For any key k, there is pair {m1,m2} such that for c <- Enc_k(m1), m2 not in DEC(c)
+> For scenario where alice pick randomly from m1 m2, we define attack as:
+> - if m2 in DEC(c) -> guess randomly
+> - if m2 not in DEC(c) -> guess m1
+> this gives success of 1/2 + eps/4 where eps is the proportion of keys where m2 not in DEC(c)
+
+> [!note] What if eps is small?
+> Shannon showed that with |K| = |M|-1,
+> eps is 1/2 which gives success prob of 5/8
+> We also show:
+> 
+> $$\Pr \left[ k \leftarrow \mathcal{K}; \text{Enc}_k(m_1) = c : m_2 \in \mathbf{Dec}(c) \right] \le \epsilon$$
+
+> PREVIOUS: [[2-Private Key Encryption]]
+> NEXT: [[4-Efficient Computing]]
+
