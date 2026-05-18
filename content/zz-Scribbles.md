@@ -1,2 +1,3 @@
 Command to Sync: npx quartz sync
-Page: 21 of PDF
+Page: 38 of PDF
+ctrl F5 for refreshing git page
