@@ -70,4 +70,4 @@ A non-uniform probabilistic polynomial-time machine (abbreviated n.u. p.p.t.) A 
 >" Alternatively, a non-uniform p.p.t. machine can also be defined as a uniform p.p.t. machine A that receives an advice string for each input length. In the rest of this text, any adversarial algorithm A will implicitly be a non-uniform PPT. "
 
 > PREVIOUS: [[3-Modern Cryptography]]
-> NEXT:
+> NEXT: [[5-One Way Functions]]
