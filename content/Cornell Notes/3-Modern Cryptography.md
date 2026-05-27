@@ -13,14 +13,14 @@ We also expand from communication to joint computations and more
 
 Explanation through example: Matchmaking Game
 
-![[Pastedimage20260301221213.png]]
+![[content/Attachments/Pastedimage20260301221213.png]]
 
-![[Pastedimage20260301221146.png]]
+![[content/Attachments/Pastedimage20260301221146.png]]
 
 This is then followed both parties making a random cut. Note that a party may choose to disobey and do an intentional cut or no cut at all.
 
 Final Output will be like:
-![[Pastedimage20260301221727.png]]
+![[content/Attachments/Pastedimage20260301221727.png]]
 
 And "cuts" basically do cyclic shifts, hence even with parties disobeying, no party can know the choice of the other party.
 

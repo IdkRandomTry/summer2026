@@ -1,0 +1,34 @@
+# Content Provenance Paper
+- [ ] SNARKs
+	- [ ] ZK SNARKS - [[ZK-SNARKs]]
+	- [ ] PLONKS
+		- [ ] FFT Intensive
+		- [ ] HyperPLONKs
+	- [ ] Interactive Oracle Proofs (IOP)
+	- [ ] R1CS
+- [x] Boolean Hypercubes - [[Boolean Hypercubes]]
+- [ ] Commitment Schemes
+	- [ ] Brakedown Commitment Scheme
+	- [ ] KZG 
+	- [ ] PMT
+	- [ ] Basefold 
+	- [ ] Basefold- Fri
+	- [ ] ZeromorphFr
+- [ ] C2PA - [[C2PA]]
+	- [x] What is it
+	- [ ] What are the Transformations allowed?
+- [ ] Digital Signature Schemes - [[Digital Signature Scheme]]
+	- [ ] Schnorr
+	- [ ] RSA
+	- [ ] ECDSA
+- [ ] Hash Functions
+	- [ ] Ajtai - *lattice-based linear hash function* 
+	- [ ] Poseidon
+- [ ] Affine Functions
+- [ ] 2D Convolutions
+- [ ] Security Parameter
+- [x] Hash Family [[Hash Functions]]
+	- [x] Low Norm Collision Resistant Hash Family - [[Hash Functions#Low-Norm Collision-Resistant Hash Family]]
+- [ ] Interactive Oracle Proofs
+- [ ] Chapter 4 from textbook
+- [ ] Chapter 5.5 from textbook

@@ -23,6 +23,8 @@ Issue: This includes $f$ where inverting is possible for most/many x but not all
 > 
 > Non-Negligible Examples: $\frac{1}{2}$ (constants), $\frac{1}{n^2}$, $\frac{1}{\log n}$, or oscillating functions like $t(n) = \frac{1}{2}$ for even $n$ and $2^{-n}$ for odd $n$ (exceeds an inverse polynomial infinitely often).
 
+^59b5e7
+
 # Strong One-Way Function
 A function mapping strings to strings $f : \{0,1\}^* \to \{0,1\}^*$ is a *strong one-way function* if it satisfies the following two conditions:
 

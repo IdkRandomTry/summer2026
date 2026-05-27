@@ -4,3 +4,4 @@ ctrl F5 for refreshing git page
 
 ---
 Dont forget that invert of a function usually means finding any pre-image.
+
