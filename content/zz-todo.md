@@ -7,14 +7,15 @@
 	- [ ] Interactive Oracle Proofs (IOP)
 	- [ ] R1CS
 - [x] Boolean Hypercubes - [[Boolean Hypercubes]]
-- [ ] Commitment Schemes
+- [x] Commitment Schemes - In notebook
 	- [ ] Brakedown Commitment Scheme
+	- [ ] PST
 	- [ ] KZG 
 	- [ ] PMT
 	- [ ] Basefold 
 	- [ ] Basefold- Fri
 	- [ ] ZeromorphFr
-- [ ] C2PA - [[C2PA]]
+- [x] C2PA - [[C2PA]]
 	- [x] What is it
 	- [ ] What are the Transformations allowed?
 - [ ] Digital Signature Schemes - [[Digital Signature Scheme]]
@@ -29,6 +30,10 @@
 - [ ] Security Parameter
 - [x] Hash Family [[Hash Functions]]
 	- [x] Low Norm Collision Resistant Hash Family - [[Hash Functions#Low-Norm Collision-Resistant Hash Family]]
-- [ ] Interactive Oracle Proofs
+- [x] Interactive Oracle Proofs - Done in notebook
+	- [x] POIP - Done in Notebook
+		- [ ] Lookup PIOP - Overview in Notebook (need deeper understanding)
+		- [ ] Inner Product PIOP - 
+- [ ] Fiat Shamir Transform
 - [ ] Chapter 4 from textbook
 - [ ] Chapter 5.5 from textbook
