@@ -9,3 +9,6 @@ The current system is robust enough to handle standardized blurring and pixelati
 >We aim to propose an efficient ZK proof system for Differentially Private Pixelation of credibly sourced Images without trusting the editing software
 ## Subgoal 1: Understanding DP Pixelation
 [[DP-Pixelation]]
+
+# Goal 1: Broad Proof Protocol Framework
+[[Proof Protocol Framework]]
