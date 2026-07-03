@@ -1,6 +1,5 @@
 Paper: [[DP-Pix.pdf]]
 
-
 > [!Quote] **Problem Setting**
 > We consider the problem setting where a data owner wishes to share one or more images with a wide range of untrusted recipients, e.g., researchers or the greater public. The data owner must sanitize the image data prior to its publication, in order to protect the privacy of individuals or objects captured in the images. 
 
