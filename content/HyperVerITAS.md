@@ -48,7 +48,7 @@ $$
 We use [[Inner Product PIOP]] and [[Lookup PIOP]]
 1. $\mathcal{P}$ calculates commitments to each column of $\mathbf{I} \odot \mathbf{R}$, denote these as $\text{com}_{(\mathbf{I} \odot \mathbf{R})_j}$ for $j \in [3]$.
 2. $\mathcal{P}$ calculates commitments to each column of $(\mathbf{I}_t - \mathbf{E})$, denote these as $\text{com}_{(\mathbf{I}_t - \mathbf{E})_j}$ for $j \in [3]$.
-3. $\mathcal{V}$ samples $\mathbf{r} \leftarrow \textdollar \mathbb{F}^m$ and sends $\mathbf{r}$ to $\mathcal{P}$.
+3. $\mathcal{V}$ samples $\mathbf{r} \leftarrow \mathbb{F}^m$ and sends $\mathbf{r}$ to $\mathcal{P}$.
 4. $\mathcal{P}$ computes $c_j := \langle \mathbf{r}, (\mathbf{I}_t - \mathbf{E})_j \rangle$, sends $c_j$ to $\mathcal{V}$, for $j \in [3]$.
 5. $\mathcal{P}$ and $\mathcal{V}$ engage in an Inner Product Protocol for relation $((\mathbf{r}, \text{com}_{(\mathbf{I}_t - \mathbf{E})_j}, c_j); (\mathbf{I}_t - \mathbf{E})_j) \in R_{\text{ipE}}$ for $j \in [3]$.
 6. $\mathcal{P}$ and $\mathcal{V}$ compute $\mathbf{v}_0 := \mathbf{r} \odot \mathbf{L}$.
@@ -65,12 +65,21 @@ We use [[Inner Product PIOP]] and [[Lookup PIOP]]
 ## Low Norm Linear Hash Pre-Image
 We now want to show that $I$ is the Pre-Image of $H$ which is signed by camera. We must show it is a low norm pre-image, since the hash collision resistant only for low norm by [[Short Integer Solution Problem]]. We describe the relation as:
 
-$$R_{\text{lh}} = \left\{ ((\text{com}_{\mathbf{I}}, \mathbf{A}, \mathbf{H}); \mathbf{I}) : 
+$$
+R_{\text{lh}} = \left\{ (( \text{com}_{\mathbf{I}}, \mathbf{A}, \mathbf{H}); \mathbf{I}) : 
 \begin{align}
 &\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
 &\land \mathbf{H} = \mathbf{A} \odot \mathbf{I} \\
+&\land \mathbf{I} \in [256]^{n\times 3}
+\end{align} \right\}
+$$
+
+$$R_{\text{lh}} = \left\{ ((\text{com}_{\mathbf{I}}, \mathbf{A}, \mathbf{H}); \mathbf{I}) : 
+\begin{aligned}
+&\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
+&\land \mathbf{H} = \mathbf{A} \odot \mathbf{I} \\
 &\land \mathbf{I} \in [256]^{n \times 3}
-\end{align} \right\}$$
+\end{aligned} \right\}$$
 
 ### Protocol
 uses [[Inner Product PIOP]] via [[#Public Affine Relation]] and [[Lookup PIOP]]
