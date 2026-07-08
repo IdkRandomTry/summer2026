@@ -28,6 +28,7 @@ This relation is highly modular and broken down into four main checks:
 $R_{par}$ handles any image transformation that can be modeled as an affine transformation. It is defined as follows:
 
 $$R_{par} = \left\{((I_t, com_I, L, R, E); I) : com_I = \text{Commit}(pp, I) \land I_t = L \odot I \odot R + E\right\}$$
+
 **Public Input:** $(I_T, com_I, L, R, E)$
 **Private Witness:** $I$
 ### Protocol
@@ -44,12 +45,12 @@ Authors note that when using Affine-like transformations for gray-scaling, round
 
 $$
 R_{\text{sar}} = \left\{ ((\mathbf{I}_t, \text{com}_{\mathbf{I}}, \text{com}_{\mathbf{E}}, B, \mathbf{L}, \mathbf{R}); \mathbf{I}, \mathbf{E}) : 
-\begin{align}
+\begin{aligned}
 &\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
 &\land \text{com}_{\mathbf{E}} = \text{Commit}(\text{pp}, \mathbf{E}) \\
 &\land \|\mathbf{E}\|_\infty \leq B \\
 &\land \mathbf{I}_t = \mathbf{L} \odot \mathbf{I} \odot \mathbf{R} + \mathbf{E}
-\end{align} \right\}
+\end{aligned} \right\}
 $$
 
 ### Protocol 
@@ -75,11 +76,11 @@ We now want to show that $I$ is the Pre-Image of $H$ which is signed by camera. 
 
 $$
 R_{\text{lh}} = \left\{ (( \text{com}_{\mathbf{I}}, \mathbf{A}, \mathbf{H}); \mathbf{I}) : 
-\begin{align}
+\begin{aligned}
 &\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
 &\land \mathbf{H} = \mathbf{A} \odot \mathbf{I} \\
 &\land \mathbf{I} \in [256]^{n\times 3}
-\end{align} \right\}
+\end{aligned} \right\}
 $$
 ### Protocol
 uses [[Inner Product PIOP]] via [[#Public Affine Relation]] and [[Lookup PIOP]]
