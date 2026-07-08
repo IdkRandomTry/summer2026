@@ -47,19 +47,24 @@ $$\leq \exp\left(\frac{|f_t(x)_i - f_t(x')_i|}{\lambda}\right)$$
 
 ### Bounding the Entire Transcript
 Because queries can be adaptive, the proof uses the law of conditional probability to evaluate the entire sequence. We multiply the bounded conditional probabilities for every query $i$ in the transcript:
+
 $$\frac{\Pr[\text{San}_f(x) = t]}{\Pr[\text{San}_f(x') = t]} = \prod_i \frac{\Pr[\text{San}_f(x)_i = t_i | t_1, \dots, t_{i-1}]}{\Pr[\text{San}_f(x')_i = t_i | t_1, \dots, t_{i-1}]}$$
 
-Substituting our single-query bound from Step 3:
+Substituting our single-query bound from [[#Bounding the Individual Query]]:
+
 $$\leq \prod_i \exp\left(\frac{|f_t(x)_i - f_t(x')_i|}{\lambda}\right)$$
 
 When multiplying exponents with the same base, you add the powers. The sum of the absolute differences across all $i$ queries is simply the $L_1$ norm:
+
 $$= \exp\left(\frac{\|f_t(x) - f_t(x')\|_1}{\lambda}\right)$$
 
 ### Applying the Sensitivity ($S(f)$ aka $\Delta f$)
 By definition, the maximum amount the sum of outputs can change between two neighboring databases is the sensitivity $S(f_t)$. Therefore:
+
 $$\|f_t(x) - f_t(x')\|_1 \leq S(f_t)$$
 
 If we deliberately calibrate our Laplace noise scale parameter $\lambda$ so that it matches the ratio of sensitivity to our privacy budget ($\lambda = \frac{S(f_t)}{\epsilon}$), we can substitute both the sensitivity and lambda into our exponent:
+
 $$\leq \exp\left(\frac{S(f_t)}{S(f_t)/\epsilon}\right) = \exp(\epsilon)$$
 
 This mathematically proves that the mechanism is $\epsilon$-indistinguishable (meaning it satisfies strict $\epsilon$-Differential Privacy).
