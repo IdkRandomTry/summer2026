@@ -73,14 +73,6 @@ R_{\text{lh}} = \left\{ (( \text{com}_{\mathbf{I}}, \mathbf{A}, \mathbf{H}); \ma
 &\land \mathbf{I} \in [256]^{n\times 3}
 \end{align} \right\}
 $$
-
-$$R_{\text{lh}} = \left\{ ((\text{com}_{\mathbf{I}}, \mathbf{A}, \mathbf{H}); \mathbf{I}) : 
-\begin{aligned}
-&\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
-&\land \mathbf{H} = \mathbf{A} \odot \mathbf{I} \\
-&\land \mathbf{I} \in [256]^{n \times 3}
-\end{aligned} \right\}$$
-
 ### Protocol
 uses [[Inner Product PIOP]] via [[#Public Affine Relation]] and [[Lookup PIOP]]
 We note that $H=A\odot I$ can be considered as an instance of [[#Public Affine Relation]].
