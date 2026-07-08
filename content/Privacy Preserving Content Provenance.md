@@ -16,18 +16,9 @@ This is largely harmless. For low entropy images such as maybe a cropped image o
 ### Redaction
 The public T reveals the location of the redaction, which is nothing more than what is already revealed in the image. There are corner cases where we "redact" using the background color and do not  wish to reveal that we have redacted. However this is not prevalent.
 ### Blurring
-Traditional blurring methods (gaussian blur and avg-pixelation) are already public algorithms. There is little to hide in T other than the location of blur and some parameters used such as padding and size of convolution kernels, radius of gaussian blur, etc. [This (non-scientific) blog](https://medium.com/@gonced8/can-you-recover-a-blurred-image-61bbcaa969d5) which claims difficulty in "de-blurring" when kernel is secret. However, I do not think there is credit to it as the author may have not used brute force efficiently.
-#### Deblurring is reasonably easy
-Reading more about deblurring, it seems like deblurring images which use standard blurring algorithms is reasonably efficient making it an inherent security risk, irrespective of whether T is public or not.
-
-> [!quote]
-> However, recent studies have shown that pixelization \[13], blurring \[13], and the P3 system \[7] are not effective in privacy preservation. Given sufficient training data and the obfuscation technique, various models can be built to associate the obfuscated images to the ground truth, which can be used to decode redacted documents \[13], and to re-identify faces and handwritten digits \[14]. Therefore, we are in need of image obfuscation methods that can provide rigorous privacy guarantees.
-> ~ [[DP-Pix.pdf]]
-#### Better Blurring
-[[DP Pixelation]] proposed a more secure pixelation method which involves adding noise to achieve differential privacy for images. DP-Pixelation is not reversible due to inherent randomness in the transformation. Hence a public $T$ is catastrophic as it reveals the random noise added. 
-
-When we map to the affine transformations as used in [[HyperVerITAS]] : $I_t = L \cdot I \cdot R + E$ , intuitively, the $L$ is from the natural pixelation algorithm whereas the $E$ is where the random noise is seen. Revealing this will reveal the randomness used resulting in loss of security. This is good motivation for extending the [[HyperVerITAS]] system to handle DP-Pixelation where $E$ is kept private.
-
+(Discussed in detail in [[Blurring]])
+There is a secure method of blurring described in [[DP Pixelation]] which pixelates and adds noise to obfuscate the sensitive information. If we map this transformation to affine transformations used in [[HyperVerITAS]], the noise is captured by the $E$ matrix. If this noise is public, it will destroy the [[Differential Privacy (DP)]] guarantees given by the method described in [[DP Pixelation]] posing a security risk. 
+We propose a modified version of HyperVerITAS which handles [[DP Pixelation]] by an untrusted editor, proving authenticity/source of a publicly available Pixelated Image: [[DP Pixelation Provenance]].
 ### Encryption
 There is a line of research which involves blurring based on an encryption key, allowing those with the key to decrypt it and access the image. This also seems like a natural candidate to motivate hiding T. But note: Those with the Key can simply decrypt and use the [[HyperVerITAS]] or some other existing proof system to verify. However having T in public is insecure without a doubt. In such cases we attempt to prove that an encrypted image came from a particular source image (plaintext). This is the case of verifiable encryption, which may be of some interest. 
 #### Homomorphic Encryption

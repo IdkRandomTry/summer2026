@@ -18,7 +18,7 @@ Author considers Grayscale $I$ and mentions extension by considering each channe
 **We assume that removing those pixels is sufficient to protect the privacy of the underlying information, by definition of differential privacy**
 
 ## Main Idea
-Uses [[Laplace for DP.pdf]] 
+Uses [[Laplace Noise for DP]] from the paper [[Laplace for DP.pdf]] 
 **Differentially Private Pixelization (Pix)**
 In a nutshell, DP Pix algorithm first performs pixelization on an input image, and applies Laplace perturbation to the pixelized image. Specifically, let $c_k$ denote the $k$-th grid cell over an $M \times N$ image. As shown in Figure 3, there are $\lceil \frac{M}{b} \rceil \lceil \frac{N}{b} \rceil$ cells in total. Let $K = \lceil \frac{M}{b} \rceil \lceil \frac{N}{b} \rceil$. The pixelization of an image $I$ can be denoted as a vector of length $K$, i.e.:
 
