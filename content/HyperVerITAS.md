@@ -7,8 +7,15 @@ HyperVerITAS proposes an efficient modular system for image verification. Its ef
 HyperVerITAS shows a ZKP for the following relation
 
  $R(pp, vk, A)$ is parameterized by the public parameters $pp$, the verification key $vk$ of the digital signature scheme $\Sigma$, and a hash function $A$. It is defined as follows:
-
-$$R=\left\{((I_t, com_I, H, \sigma, T); I) : com_I = \text{Commit}(pp, I) \land I_t = T(I) \land H = A \odot I \land I \in [256]^{n \times 3} \land \text{Vrfy}(vk, H, \sigma) = 1\right\}$$
+$$
+R_{\text{sar}} = \left\{ ((\mathbf{I}_T, \text{com}_{\mathbf{I}}, \mathbf{H}, \sigma, \mathbf{T}, \mathbf{A}); \mathbf{I}) : 
+\begin{align}
+&\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
+&\land \text{I}_T = T(\mathbf{I}) \\
+&\land \mathbf{H} = \mathbf{A} \odot  \mathbf{I} ~~\land~~ \mathbf{I} \in [255]^{n\times3}\\
+&\land \text{Vrfy}(vk, \mathbf{H}, \sigma) = 1
+\end{align} \right\}
+$$
 
 This relation is highly modular and broken down into four main checks:
 * **Commitment check** ($com_I = \text{Commit}(pp, I)$): Ensures that the commitment is correctly generated.
