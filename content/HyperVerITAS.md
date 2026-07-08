@@ -34,13 +34,15 @@ We use [[Inner Product PIOP]]
 ## Secret Affine Relation
 Authors note that when using Affine-like transformations for gray-scaling, rounding off to nearest integer is required. This is captured in $E$ matrix. This value can leak information regarding the original color. Hence we introduce [[#Secret Affine Relation]] where we commit to $E$ and prove its well-formedness without revealing it.
 
-$$R_{\text{sar}} = \left\{ ((\mathbf{I}_t, \text{com}_{\mathbf{I}}, \text{com}_{\mathbf{E}}, B, \mathbf{L}, \mathbf{R}); \mathbf{I}, \mathbf{E}) : 
-\begin{aligned}
+$$
+R_{\text{sar}} = \left\{ ((\mathbf{I}_t, \text{com}_{\mathbf{I}}, \text{com}_{\mathbf{E}}, B, \mathbf{L}, \mathbf{R}); \mathbf{I}, \mathbf{E}) : 
+\begin{align}
 &\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
 &\land \text{com}_{\mathbf{E}} = \text{Commit}(\text{pp}, \mathbf{E}) \\
 &\land \|\mathbf{E}\|_\infty \leq B \\
 &\land \mathbf{I}_t = \mathbf{L} \odot \mathbf{I} \odot \mathbf{R} + \mathbf{E}
-\end{aligned} \right\}$$
+\end{align} \right\}
+$$
 
 ### Protocol 
 We use [[Inner Product PIOP]] and [[Lookup PIOP]]
