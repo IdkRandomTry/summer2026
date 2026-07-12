@@ -9,6 +9,7 @@ Polynomial Interactive Oracle Proofs (PIOPs) serve as a modular cryptographic ab
 
 The paper elaborates on several important PIOPs such as:
 - [[Sum Check PIOP]] used for [[Inner Product PIOP]]
+- [[Zero Check PIOP]]
 - [[Lookup PIOP]]
 - [[Multiset PIOP]]
-which we have used.
+which are of relevance.
