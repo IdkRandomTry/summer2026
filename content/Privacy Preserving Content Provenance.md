@@ -1,4 +1,4 @@
-There has been a line of research which is motivated to tackle the pain points of the [[C2PA]] standard as mentioned above. 
+There has been a line of research which is motivated to tackle the pain points of the C2PA. ([[C2PA#Problems with C2PA's current system]])
 
 The research paper [[PhotoProof.pdf]] talks about these problems. Surprisingly it pre-dates the formation of C2PA. [[PhotoProof.pdf]] gives a theoretical solution for proving an image is a transformation of a signed raw image, where the transformation are a sequence of permitted operations. Authors also give a proof-of-concept implementation. However in practice the time and compute required was not ideal and the system could not scale to real world application.
 
@@ -29,3 +29,5 @@ Notice that there is some credit to developing custom verifiable encryption syst
 > [!Note]
 > It may also be important to note that: In practice, people make 2 copies of the image containing sensitive data, encrypt the original and redact the sensitive information in the publicly available copy. This seems to provide similar (if not better) guarantees. However it does use twice the storage space.
 
+---
+Suggested next page: [[HyperVerITAS]]

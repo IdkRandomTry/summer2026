@@ -90,3 +90,6 @@ We note that $H=A\odot I$ can be considered as an instance of [[#Public Affine R
 3. $\mathcal{V}$ accepts if they accept the public affine transformation argument and the three lookup arguments.
 
 HyperVerITAS also implement and give experimental results to prove the efficiency of the proposed algorithm. - Github Repo: [github.com/glgreiner/HyperVerITAS](github.com/glgreiner/HyperVerITAS)
+
+---
+Suggested next page: [[DP Pixelation Provenance]]

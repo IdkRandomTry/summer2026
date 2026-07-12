@@ -7,4 +7,7 @@ With the increase in quality of AI generated images, it has become harder to dis
 
 The nature of the problems calls for using cryptographic techniques of similar nature. Infact the most straightforward solution involves adding software to cameras which sign the raw image as soon as captured! However, notice that when an image is altered the sign will no longer hold. It is common for legitimate photographs to undergo edits before publishing which makes the signature void.
 
-This has lead to the rise of [[#C2PA]]
+This has lead to the rise of [[C2PA]]
+
+---
+Suggested next page: [[C2PA]]

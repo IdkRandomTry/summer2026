@@ -18,3 +18,6 @@ It may seem at the surface that this system is exactly what we want. However it 
 - **Cost of C2PA trusted software:** Certain open-source, free software may not be considered C2PA compliant, although being legitimate and worthy of trust. Hence there is motivation to treat the editing software as an untrusted party when providing content provenance. This reduces the trusted base (we only trust the camera) and makes the technology more accessible.
 
 This has given rise to [[Privacy Preserving Content Provenance]]
+
+---
+Suggested next page: [[Privacy Preserving Content Provenance]]

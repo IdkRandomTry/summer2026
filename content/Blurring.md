@@ -9,3 +9,6 @@ Reading more about deblurring, it seems like deblurring images which use standar
 [[DP Pixelation]] proposed a more secure pixelation method which involves adding noise to achieve differential privacy for images. DP-Pixelation is not reversible due to inherent randomness in the transformation. Hence a public $T$ is catastrophic as it reveals the random noise added. 
 
 When we map to the affine transformations as used in [[HyperVerITAS]] : $I_t = L \cdot I \cdot R + E$ , intuitively, the $L$ is from the natural pixelation algorithm whereas the $E$ is where the random noise is seen. Revealing this will reveal the randomness used resulting in loss of security. This is good motivation for extending the [[HyperVerITAS]] system to handle DP-Pixelation where $E$ is kept private.
+
+---
+Suggested next page: [[DP Pixelation]]

@@ -33,3 +33,6 @@ This is because the difference between any two pixels is at most 255 and up to $
 
 *Algorithm $\tilde{P}_b$ satisfies $\epsilon$-differential privacy.*
 *Proof.* Since $\Delta P_b = \frac{255m}{b^2}$, by definition applying the [[Laplace Noise for DP|Laplace mechanism]] to $P_b$ achieves differential privacy. Note that each pixel in $\tilde{P}_b(I)$ is truncated to the range of $[0, 255]$. This post-processing of $\tilde{P}_b$ does not affect its privacy guarantee. 
+
+---
+Suggested next page: [[DP Pixelation Provenance]]

@@ -3,7 +3,7 @@ Hello,
 These notes are populated during my studies in Summer 2026 under the guidance of Prof. Arvind and Garrett. The notes contain what I learnt, studied and also a proposal for something slightly novel. The overarching domain of studies was **Content Provenance**, under which I particularly studied *privacy-preserving image provenance*. The thought-process behind the studies has always had some practical motivations and aims more towards impactful research which solves real-world problems. Happy reading
 
 # How to Navigate the Notes
-The notes use internal linking to avoid repetition and offer good access to notes which explain pre-requisites or relevant concepts when reading about a particular topic. Hovering on a link gives you a sneak-peak into what the linked-note holds. If you click to go to a particular linked-note, use the **Backlinks** (a section at right-bottom or bottom of page) to come back. You can also use the **Graph View** to check out related notes.
+The notes use internal linking to avoid repetition and offer good access to notes which explain pre-requisites or relevant concepts when reading about a particular topic. Hovering on a link gives you a sneak-peak into what the linked-note holds. If you click to go to a particular linked-note, use the **Backlinks** (a section at right-bottom or bottom of page) to come back. You can also use the **Graph View** to check out related notes. Hovering on a node in the graph displays its title. To come back to this page ([[content/Index|Index]]), click on **Summer 2026** (left top or top of page).
 
 Following are what I consider good starting points for iving into the notes (in order):
 - **Content Provenance** attempts to give verifiable information regarding the authenticity of a media, often involving its source/origin and potentially involving the edits which were made. To learn more - [[Content Provenance]].
@@ -17,4 +17,4 @@ DP-Pixelation uses secret noise to protect the privacy of features being blurred
 # Disclaimer
 This "vault" is still "work-in-progress". I am currently attempting to understand and fill the notes for the following concepts. 
 - [[Poseidon as a Sponge Function]]
-(some other notes may also need a re-work or finishing touches)
+- (some other notes may also need a re-work or finishing touches)
