@@ -8,7 +8,7 @@ HyperVerITAS shows a ZKP for the following relation
 
  $R(pp, vk, A)$ is parameterized by the public parameters $pp$, the verification key $vk$ of the digital signature scheme $\Sigma$, and a hash function $A$. It is defined as follows:
 $$
-R_{\text{sar}} = \left\{ ((\mathbf{I}_T, \text{com}_{\mathbf{I}}, \mathbf{H}, \sigma, \mathbf{T}, \mathbf{A}); \mathbf{I}) : 
+R = \left\{ ((\mathbf{I}_T, \text{com}_{\mathbf{I}}, \mathbf{H}, \sigma, \mathbf{T}, \mathbf{A}); \mathbf{I}) : 
 \begin{aligned}
 &\text{com}_{\mathbf{I}} = \text{Commit}(\text{pp}, \mathbf{I}) \\
 &\land \text{I}_T = T(\mathbf{I}) \\

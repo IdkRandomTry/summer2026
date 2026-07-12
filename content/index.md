@@ -6,6 +6,11 @@ A Pixelation method which guarantees Differential Privacy - [[DP Pixelation]]
 
 Efficient Tools for Zero Knowledge Proofs - [[HyperPlonk]]
 
-
-
+---
 **Proposed System for Image Provenance over DP Pixelation -** [[DP Pixelation Provenance]]
+
+---
+The following notes are to be completed:
+- [[Poseidon as a Sponge Function]]
+- [[Lookup PIOP]]
+- [[Multiset PIOP]]
