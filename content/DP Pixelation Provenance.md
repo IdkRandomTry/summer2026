@@ -71,13 +71,14 @@ We notice that any $x>255$ has the same effect as $x=255$ (because of truncation
 ##### Proposed Method 1
 Using Binomial Method to approximate the Laplace Distribution. Consider 2 random $n-$length bitstrings and find the difference of the sum of the bits in the strings. The method requires pixel-by-pixel noise generation which results in a huge overhead. We wish to find a method which can check the validity for the entire vector of noise efficiently.
 ##### Proposed Method 2
-We discretize the Laplace distribution by making a table to mimic the sampling process. The table is designed such that the number of rows mapping to $x$ is proportional to $Pr(x)$ in the Laplace distribution. Let this table be $T_\mathcal{L}$. $T_\mathcal{L}$ allows us to map uniform randomness to Laplacian noise. Recall that this Laplacian Noise should be private. Instead of generating (and proving) private uniform randomness, we instead consider a private permutation of $T_\mathcal{L} - T'_\mathcal{L}$. We prove that the multisets $T_\mathcal{L}$ and $T'_\mathcal{L}$ are equal. This proves that $T'_\mathcal{L}$ also simulates Laplace sampling. This allows us to offload generation of uniform random numbers to the verifier $V$ followed by a proof of $N_i=T'_\mathcal{L}[R_i]$ via a simple lookup-protocol
+We discretize the Laplace distribution by making a table to mimic the sampling process. The table is designed such that the number of rows mapping to $x$ is proportional to $Pr(x)$ in the Laplace distribution. Let this table be $T_\mathcal{L}$. $T_\mathcal{L}$ allows us to map uniform randomness to Laplacian noise. Recall that this Laplacian Noise should be private. Instead of generating (and proving) private uniform randomness, we instead consider a private permutation of $T_\mathcal{L}: T'_\mathcal{L}$. We prove that the multisets $T_\mathcal{L}$ and $T'_\mathcal{L}$ are equal. This proves that $T'_\mathcal{L}$ also simulates Laplace sampling. This allows us to offload generation of uniform random numbers to the verifier $V$ followed by a proof of $N_i=T'_\mathcal{L}[R_i]$ via a simple lookup-protocol
 
-This has 2 flaws:
-- A dishonest prover can simply choose $T'_\mathcal{L} = T_\mathcal{L}$ leaking the noise used.
-- Size of the table: The quantization of sampling into a table introduces some error ($\delta$). We can calculate the total variation distance: For each individual noise output, the rounding error is $\Delta = \dfrac{1}{2*|T|}$. The outputs vary from $[-255,255]$. Hence the $\Delta_{TVD} = \dfrac{2^9}{2*|T|}$. As shown in [[#Derivation 1]], $\delta = (1+e^\epsilon)\Delta_{TVD}$. For a reasonable $\delta$ of $10^{-6}$ and $\epsilon = 0.1$, we require $|T| \approxeq 2^{29}$. Unfortunately, this is not practically achievable yet.
+> [!Note] Do we have to check for random permutation?
+> It seems important to verify that $T_L'$ is a random permutation of $T_L$ to ensure that a *lazy* prover didn't just choose $T_L'=T_L$. However, note that this choice only hurts the prover. A malicious prover attempting to cheat the verifier wishes to misuse the noise. However, we believe that the freedom of choosing $T_L'$ does not enable this. It is in an honest prover's best interest to use a well scrambled version of $T_L$ to protect the private noise.
 
-##### Proposed Method 3 \[Current Method\]
+**Size of the table**: The quantization of sampling into a table introduces some error ($\delta$). We can calculate the total variation distance: For each individual noise output, the rounding error is $\Delta = \dfrac{1}{2*|T|}$. The outputs vary from $[-255,255]$. Hence the $\Delta_{TVD} = \dfrac{2^9}{2*|T|}$. As shown in [[#Derivation 1]], $\delta = (1+e^\epsilon)\Delta_{TVD}$. For a reasonable $\delta$ of $10^{-6}$ and $\epsilon = 0.1$, we require $|T| \approxeq 2^{29}$. This is not super practical
+
+##### Proposed Method 3 
 We use a append-only public ledger for commitments. Lets call it $\mathcal{F}$. We also assume access to a time-aware randomness beacon.  We also use Poseidon as a verifiable PRNG - the math behind which, I am currently trying to understand - [[Poseidon as a Sponge Function]]
 ###### Initialization
 1. **Private Seed -** Prover generates secret seed $K_s$ in {0, 1}^256. and then Commit to $\mathcal{F}$. Prover computes and publishes commitment $C_{K_s} = Commit(K_s)$. Prover also commits to using the Randomness Beacon pulse at a fixed time in the future.
@@ -99,17 +100,19 @@ Initialization Constraints:
 
 Pixel by Pixel Execution Loop ($i = 1 ... n$)
 For each pixel i, enforce the following constraints:
-1. Extract scalar $U_i$ from the Poseidon sponge (batched 16 per permutation). - Check out [[Poseidon as a Sponge Function]]. These act as the private random number. 
-2. Split $U_i$ into $idx$ - top 9 bits and $coin_i$ - bottom 40 bits.
+1. Extract scalar $U_i$ from the Poseidon sponge. - Check out [[Poseidon as a Sponge Function]]. These act as the private random number. 
+2. Split $U_i$ into $idx$ - top 9 bits and $coin_i$ - bottom 21 bits.
 3. Lookup and fetch $(idx, P_i, A_i, Thresh_i)$ in $T_{alias}$.  - (LogUp Query) 
 4. Introduce selector $B_i \in \{0, 1\}$. $(B_i = 1 ~~if~~ Thesh_i \geq coin_i, ~~else~~ 0).$ 
-5. To check validity of the selector, construct a circuit: $X_i = Thresh_i - coin_i + (1-B_i) \cdot 2^{40}$. Then run a range proof for $2^{40} > X_i \geq 0$. Such range proofs can also be reduced to LogUp Queries. Explicitly speaking we break $X_i = b_0 + 2^{8} \cdot b_1 + 2^{16} \cdot b_2+ 2^{24} \cdot b_3+ 2^{32} \cdot b_4$ and do 5 LogUp Queries to check if $b_i \in [255]$.
+5. To check validity of the selector, construct a circuit: $X_i = Thresh_i - coin_i + (1-B_i) \cdot 2^{21}$. Then run a range proof for $2^{21} > X_i \geq 0$. Such range proofs can also be reduced to LogUp Queries. 
 6. Compute $N_i = B_i * P_i + (1 - B_i) * A_i$ and add to the pixel value.
 
 > [!note]
-> The above protocol dodges all the pitfalls we encountered in the previous methods. However, this protocol makes use of a public append-only ledger and a trusted third party - a time-aware randomness beacon. The choice of extending the trust in this particular way is made as both these assumptions have been "realized" through blockchains and beacons like [drand](https://drand.love/) to a reasonable extend. 
+> The above protocol avoids the bulky tables, however, this protocol makes use of a public append-only ledger and a trusted third party which is a time-aware randomness beacon. The choice of extending the trust in this particular way is made as both these assumptions have been "realized" through blockchains and beacons like [drand](https://drand.love/) to a reasonable extend. 
 > 
-> The fundamental problem we faced was to generate reliable and verifiable private randomness. 
+> The fundamental problem for this approach is to generate reliable and verifiable private randomness. 
+
+This has a some computing overhead which stem from commitments to $30$ bit random numbers per pixel. [[#Proposed Method 2]] avoided per pixel computations :|
 
 ### Handling Rounding off
 We want our matrices to be integers. Considering our block size for pixelation is $b$. All the values of $E_2$ (rounding errors) which result from the averaging of neighbouring pixels must be of form $\dfrac{\mathbb{I}}{b}$. Therefore we multiply all elements in $L$, $I$, $R$ and $E$ by $b$ before carrying out the procedure in [[#Secret Affine Transformation]]. 
