@@ -21,4 +21,4 @@ This "vault" is still "work-in-progress". I am currently attempting to understan
 - (some other notes may also need a re-work or finishing touches)
 
 ---
-Some rough ideas which I considered interesting enough to be noted but not formulated enough to make it into the notes can be found on the [[content/WhiteBoard|WhiteBoard]].
+Some rough ideas which I considered interesting enough to be noted but not formulated enough to make it into the notes can be found on the [[Whiteboard]].
