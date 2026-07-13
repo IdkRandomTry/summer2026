@@ -76,13 +76,13 @@ We discretize the Laplace distribution by making a table to mimic the sampling p
 > [!Note] Do we have to check for random permutation?
 > It seems important to verify that $T_L'$ is a random permutation of $T_L$ to ensure that a *lazy* prover didn't just choose $T_L'=T_L$. However, note that this choice only hurts the prover. A malicious prover attempting to cheat the verifier wishes to misuse the noise. However, we believe that the freedom of choosing $T_L'$ does not enable this. It is in an honest prover's best interest to use a well scrambled version of $T_L$ to protect the private noise.
 
-**Size of the table**: The quantization of sampling into a table introduces some error ($\delta$). We can calculate the total variation distance: For each individual noise output, the rounding error is $\Delta = \dfrac{1}{2*|T|}$. The outputs vary from $[-255,255]$. Hence the $\Delta_{TVD} = \dfrac{2^9}{2*|T|}$. As shown in [[#Derivation 1]], $\delta = (1+e^\epsilon)\Delta_{TVD}$. For a reasonable $\delta$ of $10^{-6}$ and $\epsilon = 0.1$, we require $|T| \approxeq 2^{29}$. This is not super practical
+**Size of the table**: The quantization of sampling into a table introduces some error ($\delta$). We can calculate the total variation distance: For each individual noise output, the rounding error is $\Delta = \dfrac{1}{2*|T|}$. The outputs vary from $[-255,255]$. Hence the $\Delta_{TVD} = \dfrac{2^9}{2*|T|}$. As shown in [[#Derivation 1]], $\delta = (1+e^\epsilon)\Delta_{TVD}$. A reasonable choice of $\delta$ is such that $\delta \leq \dfrac{1}{N^{1.2}}$ where $N$ is the size of image. Replacing $N = 2^{25}$, we choose $\delta = 2^{-27}$. For an $\epsilon = 0.1$ (least value used for results in [[DP-Pix.pdf]]) we require $|T| \approxeq 2^{36}$. This is not practical.
 
 ##### Proposed Method 3 
 We use a append-only public ledger for commitments. Lets call it $\mathcal{F}$. We also assume access to a time-aware randomness beacon.  We also use Poseidon as a verifiable PRNG - the math behind which, I am currently trying to understand - [[Poseidon as a Sponge Function]]
 ###### Initialization
-1. **Private Seed -** Prover generates secret seed $K_s$ in {0, 1}^256. and then Commit to $\mathcal{F}$. Prover computes and publishes commitment $C_{K_s} = Commit(K_s)$. Prover also commits to using the Randomness Beacon pulse at a fixed time in the future.
-2. **Public Seed -** Prover waits for the randomness beacon pulse. Beacon broadcasts unpredictable public seed $K_p$ in {0, 1}^256.
+1. **Private Seed -** Prover generates secret seed $K_s$ in $\{0, 1\}^{256}$. and then Commit to $\mathcal{F}$. Prover computes and publishes commitment $C_{K_s} = Commit(K_s)$. Prover also commits to using the Randomness Beacon pulse at a fixed time in the future.
+2. **Public Seed -** Prover waits for the randomness beacon pulse. Beacon broadcasts unpredictable public seed $K_p$ in $\{0, 1\}^{256}$
 
 > [!note]
 > This initialization process, makes it a point to use public randomness, to prevent prover from 'seed-grinding attacks' which are feasible when the seed of a pseudo-random generator is determined by the prover alone. In such attacks, a dishonest prover finds a malicious seed which result in the random numbers which are in favour of the malicious intent of the dishonest prover. Private randomness in the seed is also necessary to not leak the noise generated.
@@ -100,20 +100,19 @@ Initialization Constraints:
 
 Pixel by Pixel Execution Loop ($i = 1 ... n$)
 For each pixel i, enforce the following constraints:
-1. Extract scalar $U_i$ from the Poseidon sponge. - Check out [[Poseidon as a Sponge Function]]. These act as the private random number. 
-2. Split $U_i$ into $idx$ - top 9 bits and $coin_i$ - bottom 21 bits.
+1. Extract scalar $U_i$ from the Poseidon sponge. - Check out [[Poseidon as a Sponge Function]]. These act as the private random number with bit length 36
+2. Split $U_i$ into $idx$ - top 9 bits and $coin_i$ - bottom 27 bits.
 3. Lookup and fetch $(idx, P_i, A_i, Thresh_i)$ in $T_{alias}$.  - (LogUp Query) 
 4. Introduce selector $B_i \in \{0, 1\}$. $(B_i = 1 ~~if~~ Thesh_i \geq coin_i, ~~else~~ 0).$ 
-5. To check validity of the selector, construct a circuit: $X_i = Thresh_i - coin_i + (1-B_i) \cdot 2^{21}$. Then run a range proof for $2^{21} > X_i \geq 0$. Such range proofs can also be reduced to LogUp Queries. 
+5. To check validity of the selector, construct a circuit: $X_i = Thresh_i - coin_i + (1-B_i) \cdot 2^{27}$. Then run a range proof for $2^{27} > X_i \geq 0$. Such range proofs can also be reduced to LogUp Queries. 
 6. Compute $N_i = B_i * P_i + (1 - B_i) * A_i$ and add to the pixel value.
 
 > [!note]
-> The above protocol avoids the bulky tables, however, this protocol makes use of a public append-only ledger and a trusted third party which is a time-aware randomness beacon. The choice of extending the trust in this particular way is made as both these assumptions have been "realized" through blockchains and beacons like [drand](https://drand.love/) to a reasonable extend. 
+> The above protocol avoids the bulky tables, however, this protocol makes use of a public append-only ledger and a trusted third party, which is the time-aware randomness beacon. The choice of extending the trust in this particular way is made as both these assumptions have been "realized" through blockchains and beacons like [drand](https://drand.love/) to a reasonable extend. 
 > 
 > The fundamental problem for this approach is to generate reliable and verifiable private randomness. 
 
-This has a some computing overhead which stem from commitments to $30$ bit random numbers per pixel. [[#Proposed Method 2]] avoided per pixel computations :|
-
+This has a some computing overhead which stem from commitments to $36$ bit random numbers per pixel. [[#Proposed Method 2]] avoided per pixel commitments. :| 
 ### Handling Rounding off
 We want our matrices to be integers. Considering our block size for pixelation is $b$. All the values of $E_2$ (rounding errors) which result from the averaging of neighbouring pixels must be of form $\dfrac{\mathbb{I}}{b}$. Therefore we multiply all elements in $L$, $I$, $R$ and $E$ by $b$ before carrying out the procedure in [[#Secret Affine Transformation]]. 
 
